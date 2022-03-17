@@ -5,7 +5,6 @@ library(ggplot2)
 library(plotly)
 library(dplyr)
 library(tidyverse)
-library(ggthemes)
 
 markdown_text <- "
 Contributors of this dashboard: Adrianne Leung, Linhan Cai, Junrong Zhu, Zack Tang. 
@@ -177,7 +176,6 @@ app$callback(
       xlab ("IMDB Rating") +
       ylab("Duration (in mins)") +
       ggtitle("Duration Vs. IMDB Rating") +
-      ggthemes::scale_color_tableau() +
       theme_bw()
     scatter <- scatter + theme(legend.position="none")
     
