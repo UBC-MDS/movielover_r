@@ -198,7 +198,6 @@ app$callback(
       xlab ("Year") +
       ylab("Average Revenue (in millions USD)") +
       ggtitle("Average Revenue (box office) by Genre") +
-      ggthemes::scale_color_tableau() +
       theme_bw()
     line <- line + theme(legend.position="none")
     
