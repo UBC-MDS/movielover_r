@@ -46,6 +46,12 @@ app$layout(
           dbcCol(),
           dbcCol(),
           dbcCol(),
+          dbcCol(),
+          dbcCol(),
+          dbcCol(),
+          dbcCol(),
+          dbcCol(),
+          dbcCol(),
           dbcCol(
             list(
               dbcButton("Tips", id='popover-target', color='secondary', size="md"),
