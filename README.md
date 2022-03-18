@@ -35,7 +35,7 @@ Brief instruction of interactivity can be also found by clicking the popover but
 
 ### App Sketch  
 
-![](img/sketch_v2.png)
+![](img/sketch.png)
 
 ### Contribution
 
