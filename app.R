@@ -8,16 +8,16 @@ library(tidyverse)
 
 markdown_text <- "
 Contributors of this dashboard: Adrianne Leung, Linhan Cai, Junrong Zhu, Zack Tang. 
-The source code can be found [Here](https://github.com/UBC-MDS/movielover_py/blob/main/src/app.py). 
+The source code can be found [Here](https://github.com/UBC-MDS/movielover_r/blob/app-dev/app.R). 
 Detailed information about wrangled data, dashboard purpose and how to contribution can be retrieved from Github 
-[repository](https://github.com/UBC-MDS/movielover_py). The original dataset is from [Vega Dataset](https://github.com/vega/vega-datasets).
+[repository](https://github.com/UBC-MDS/movielover_r). The original dataset is from [Vega Dataset](https://github.com/vega/vega-datasets).
 "
 tips <-"
 1. Hover over the scatter points to see detailed rating values and duration.
-2. Click on any of the bar to see highlighted information of a genre.
-3. Click on the white area in the bar plot to exit the highlight mode.
-4. Click and drag on the line plot to create movable selection region.
-5. Click on the white area in the line plot to disregard the selected region.
+2. Hover over the bars to see detailed gross revenue (in millions USD) of the genre.
+3. Hover over the lines to see detailed average revenue (in millions USD) of the genre.
+4. Click and drag on the line plot or scatter plot to create a movable selection region.
+5. Click on the white area or scatter plot in the line plot to disregard the selected region.
 "
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
@@ -120,13 +120,19 @@ app$layout(
             list(
               dbcRow(
                 list(
+                div(
+                  style = list(width = '40%'),
                 dbcCol(
-                  dccGraph(id='scatter-area'),
+                  dccGraph(id='scatter-area')
+                )
                 ),
+                div(
+                  style = list(width = '60%'),
                 dbcCol(
-                  dccGraph(id='bar-area'),
+                  dccGraph(id='bar-area')
                   )
-                ),
+                )
+                )
               ),
               dbcRow(
                 dccGraph(id='line-area'),
@@ -150,7 +156,7 @@ app$callback(
       group_by(Major_Genre) %>%
       summarise(US_Revenue = sum(US_Revenue)) %>%
       ggplot(aes(x = US_Revenue, 
-                 y = reorder(Major_Genre, desc(Major_Genre)),
+                 y = Major_Genre,
                  fill = Major_Genre)) +
       geom_bar(stat = "identity") +
       xlab ("Gross Revenue (in millions USD)") +
@@ -180,7 +186,7 @@ app$callback(
     scatter <- scatter + theme(legend.position="none")
     
     ggplotly(scatter)
-    }
+  }
 )
 
 app$callback(
@@ -189,7 +195,7 @@ app$callback(
        input('genre_checklist', 'value')),
   function(year, genre) {
     line <- movie %>% 
-      filter(Year >= year[1] & Year <= year[2], Major_Genre %in% genre) %>% 
+      filter(Year >= year[1] & Year <= year[2], Major_Genre %in% genre) %>%
       ggplot(aes(x = Year, 
                  y = US_Revenue, 
                  color = Major_Genre)) +
