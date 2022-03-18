@@ -20,7 +20,7 @@ The full proposal can be found in [our proposal file](https://github.com/UBC-MDS
 
 ### Usage Instructions
 
-Users can select year range and multiple genres in the sidebar to filter out movie data to visualize in the dashboard. The dashboard contains three graphics (bar chart, line chart and scatterplot). A detailed introduction to the graphics can be found in the followed section.
+Users can select year range and multiple genres in the sidebar to filter out movie data to visualize in the dashboard. The dashboard contains three graphics (bar chart, line chart and scatter plot). A detailed introduction to the graphics can be found in the followed section.
 
 Our app support interactivity between graphs. Detailed instruction as follows:
 * Bar chart: Total US revenue of a movie genre will be shown by hovering over the bar. Also, users can click and drag on the plot to create a movable selection region.
