@@ -17,7 +17,7 @@ tips <-"
 2. Hover over the bars to see detailed gross revenue (in millions USD) of the genre.
 3. Hover over the lines to see detailed average revenue (in millions USD) of the genre.
 4. Click and drag on the line plot or scatter plot to create a movable selection region.
-5. Click on the white area or scatter plot in the line plot to disregard the selected region.
+5. Double click on the white area in the line plot or scatter plot to disregard the selected region.
 "
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
