@@ -186,8 +186,8 @@ app$callback(
                               "<br>Major Genre: ", Major_Genre),
                  group = 1)) +
       geom_point() +
-      xlab ("IMDB Rating") +
-      ylab("Duration (in mins)") +
+      xlab ("Duration (in mins)") +
+      ylab("IMDB Rating") +
       ggtitle("Duration Vs. IMDB Rating") +
       theme_bw()
     scatter <- scatter + theme(legend.position="none")
