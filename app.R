@@ -178,16 +178,16 @@ app$callback(
   function(year, genre) {
     scatter <- movie %>% 
       filter(Year >= year[1] & Year <= year[2], Major_Genre %in% genre) %>% 
-      ggplot(aes(x = Duration, 
-                 y = IMDB_Rating,
+      ggplot(aes(x = IMDB_Rating, 
+                 y = Duration,
                  color = Major_Genre,
                  text = paste("Duration: ", Duration,
                               "<br>IMDB Rating:", IMDB_Rating,
                               "<br>Major Genre: ", Major_Genre),
                  group = 1)) +
       geom_point() +
-      xlab ("Duration (in mins)") +
-      ylab("IMDB Rating") +
+      xlab ("IMDB Rating") +
+      ylab("Duration (in mins)") +
       ggtitle("Duration Vs. IMDB Rating") +
       theme_bw()
     scatter <- scatter + theme(legend.position="none")
