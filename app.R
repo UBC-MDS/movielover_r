@@ -157,14 +157,17 @@ app$callback(
       summarise(US_Revenue = sum(US_Revenue)) %>%
       ggplot(aes(x = US_Revenue, 
                  y = Major_Genre,
-                 fill = Major_Genre)) +
+                 fill = Major_Genre,
+                 text = paste("US Revenue: $", round(US_Revenue, digits = 2),
+                              "<br>Major Genre: ", Major_Genre))) +
       geom_bar(stat = "identity") +
+      scale_x_continuous(labels = function(x) format(x, big.mark = ",", scientific = FALSE)) +
       xlab ("Gross Revenue (in millions USD)") +
       ylab("Major genre") +
       ggtitle("Gross Revenue (box office) by Genre")
-    bar <- bar + guides(fill=guide_legend(title="Genres"))
+    bar <- bar + guides(fill = guide_legend(title = "Genres"))
     
-    ggplotly(bar)
+    ggplotly(bar, tooltip = "text")
   }
 )   
 
@@ -177,7 +180,11 @@ app$callback(
       filter(Year >= year[1] & Year <= year[2], Major_Genre %in% genre) %>% 
       ggplot(aes(x = Duration, 
                  y = IMDB_Rating,
-                 color = Major_Genre)) +
+                 color = Major_Genre,
+                 text = paste("Duration: ", Duration,
+                              "<br>IMDB Rating:", IMDB_Rating,
+                              "<br>Major Genre: ", Major_Genre),
+                 group = 1)) +
       geom_point() +
       xlab ("IMDB Rating") +
       ylab("Duration (in mins)") +
@@ -185,7 +192,7 @@ app$callback(
       theme_bw()
     scatter <- scatter + theme(legend.position="none")
     
-    ggplotly(scatter)
+    ggplotly(scatter, tooltip = "text")
   }
 )
 
@@ -196,18 +203,25 @@ app$callback(
   function(year, genre) {
     line <- movie %>% 
       filter(Year >= year[1] & Year <= year[2], Major_Genre %in% genre) %>%
+      group_by(Major_Genre, Year) %>%
+      summarise(US_Revenue = mean(US_Revenue)) %>%
       ggplot(aes(x = Year, 
                  y = US_Revenue, 
-                 color = Major_Genre)) +
-      geom_line(stat = 'summary', fun = mean) +
-      geom_point(stat = 'summary', fun = mean, shape = 'point') + 
+                 color = Major_Genre,
+                 text = paste("Year: ", Year,
+                              "<br>US Revenue: $", round(US_Revenue, digits = 2),
+                              "<br>Major Genre: ", Major_Genre), 
+                 group=1)) +
+      geom_line(stat = "identity") +
+      geom_point(stat = "identity", shape = 'point') + 
+      scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
       xlab ("Year") +
       ylab("Average Revenue (in millions USD)") +
       ggtitle("Average Revenue (box office) by Genre") +
       theme_bw()
     line <- line + theme(legend.position="none")
     
-    ggplotly(line)
+    ggplotly(line, tooltip = "text")
   }
 )
 
