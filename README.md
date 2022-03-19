@@ -42,7 +42,7 @@ Brief instruction of interactivity can be also found by clicking the popover but
 
 #### Clone the repo and navigate to the directory
 
-```
+```bash
 git clone https://github.com/UBC-MDS/movielover_r
 ```
 
@@ -62,7 +62,7 @@ R -f init.R
 R -f app.R
 ```
 
-The dashboard then would be available locally via <localhost:8050>, please follow the contribution section if you would like to join us!
+The dashboard then would be available locally via <localhost:8050>, please follow the contribution section if you would like to improve our app!
 
 ### Contribution
 
