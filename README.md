@@ -9,6 +9,7 @@ This document (the README file) will provide general information about the app. 
 * [Usage Instructions](#usage-instructions)
 * [App Description](#app-description)
 * [App Sketch](#app-sketch)
+* [How to Install and Run Locally](#how-to-install-and-run-locally)
 * [Contribution](#contribution)
 * [Contributors](#contributors)
 
@@ -36,6 +37,32 @@ Brief instruction of interactivity can be also found by clicking the popover but
 ### App Sketch  
 
 ![](img/sketch.png)
+
+### How to install and run locally
+
+#### Clone the repo and navigate to the directory
+
+```
+git clone https://github.com/UBC-MDS/movielover_r
+```
+
+```bash
+cd movielover_r
+```
+
+#### Run the dashboard
+
+Run the following command at the root directory of the folder:
+
+```bash
+R -f init.R
+```
+
+```bash
+R -f app.R
+```
+
+The dashboard then would be available locally via <localhost:8050>, please follow the contribution section if you would like to join us!
 
 ### Contribution
 
